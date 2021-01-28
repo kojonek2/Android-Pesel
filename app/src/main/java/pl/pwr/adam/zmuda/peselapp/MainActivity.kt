@@ -137,10 +137,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isChecksumCorrect(pesel : String) : String {
-        val controlValue = pesel.substring(10,11).toInt()
-
         val weights = arrayOf(1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1)
-        val numbers = pesel.toCharArray().map { s -> s.toInt() }
+        val numbers = pesel.toCharArray().map { s -> Character.getNumericValue(s) }
 
         val products = weights.withIndex().map { i -> i.value * numbers[i.index] }
         val m = products.sum() % 10
